@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }))
 
 const upload = multer({ dest: "uploads" })
 
-mongoose.connect("mongodb://localhost:8000/fileSharing")
+mongoose.connect("mongodb://mongo:27017/fileSharing")
 
 app.set("view engine", "ejs")
 
