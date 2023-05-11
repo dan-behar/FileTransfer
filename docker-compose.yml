@@ -10,7 +10,7 @@ services:
   api:
     build: .
     ports:
-      - 53:3000
+      - 3000:3000
     depends_on:
       - mongo
 
