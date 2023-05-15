@@ -3,9 +3,18 @@ const multer = require("multer")
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const File = require("./models/File")
+const fs = require('node:fs');
+
+const https = require('node:https');
+
+const options = {
+  key: fs.readFileSync('certificates/key.pem'),
+  cert: fs.readFileSync('certificates/cert.pem'),
+};
 
 const express = require("express")
 const app = express()
+
 app.use(express.urlencoded({ extended: true }))
 
 const upload = multer({ dest: "uploads" })
@@ -56,4 +65,4 @@ async function handleDownload(req, res) {
   res.download(file.path, file.originalName)
 }
 
-app.listen(3000)
+https.createServer(options, app).listen(443)
