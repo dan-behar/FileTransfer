@@ -5,21 +5,68 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
-  <link rel="stylesheet" href="main.css">
+ <!--  <link rel="stylesheet" href="main.css">-->
+  <meta charset="utf-8">
+    <!-- Google Web Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    <!-- Customized Bootstrap Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  
 </head>
-<body class="prueba">
+<body>
   <% if (locals.fileLink != null) { %>
     <div style="margin-bottom: 1rem;">
       Your file is upload
       <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
     </div>
   <% } %>
-  <form action="/upload" method="post" style="display: grid; gap: .5rem; grid-template-columns: auto 1fr; max-width: 500px; margin: 0 auto;" enctype="multipart/form-data">
-    <label for="file">File:</label>
-    <input type="file" id="file" name="file" required />
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" />
-    <button style="grid-column: span 2;" type="submit">Share</button>
-  </form>
+  <div class="container-fluid bg-registration py-5" style="margin: 80px 0;">
+  <div class="container py-5">
+      <div class="row align-items-center">
+          <div class="col-lg-7 mb-5 mb-lg-0">
+              <div class="mb-4">
+                  <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">UFM Project</h6>
+                  <h1 class="text-white"><span class="text-primary">File Transfer</span> For Students</h1>
+              </div>
+              <p class="text-white">
+                Share your files with your classmates just a link away!
+              </p>
+              <ul class="list-inline text-white m-0">
+                  <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Upload your file</li>
+                  <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>You can create a password to your file</li>
+                  <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Share it with your classmates!</li>
+              </ul>
+          </div>
+          <div class="col-lg-5">
+            <div class="card border-0">
+                <div class="card-header bg-primary text-center p-4">
+                    <h1 class="text-white m-0">Upload file</h1>
+                </div>
+                <div class="card-body rounded-bottom bg-white p-5">
+                  <form action="/upload" method="post" style="display: grid;" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="file" class="drop-container">
+                          <span class="drop-title">Drop files here</span>
+                          or
+                          <input type="file" id="file" name="file" required />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control p-4" placeholder="Enter password" id="password" name="password" />
+                    </div>
+                    <div>
+                      <button class="btn btn-primary btn-block py-3" type="submit">Share</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+  
+      
+  
 </body>
 </html>
