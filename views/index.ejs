@@ -14,14 +14,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   
 </head>
-<body>
-  <% if (locals.fileLink != null) { %>
-    <div style="margin-bottom: 1rem;">
-      Your file is upload
-      <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
-    </div>
-  <% } %>
-  <div class="container-fluid bg-registration py-5" style="margin: 80px 0;">
+<body class="container-fluid bg-registration py-5">
+  <div  style="margin: 80px 0;">
   <div class="container py-5">
       <div class="row align-items-center">
           <div class="col-lg-7 mb-5 mb-lg-0">
@@ -59,6 +53,16 @@
                       <button class="btn btn-primary btn-block py-3" type="submit">Share</button>
                     </div>
                   </form>
+                  <% if (locals.fileLink != null) { %>
+                    <div style="margin-bottom: 1rem;">
+                             <!-- <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>-->
+                      <!-- The text field -->
+                      <br>
+                      <input class="form-control p-4" type="text" value="<%= locals.fileLink %>" id="myInput">
+                      <!-- The button used to copy the text --><br>
+                      <button class="btn btn-primary2  btn-block py-3"  onclick="myFunction()">Copy link</button>
+                    </div>
+                  <% } %>
                 </div>
             </div>
         </div>
@@ -67,6 +71,21 @@
 </div>
   
       
+<script>
+  function myFunction() {
+    // Get the text field
+    var copyText = document.getElementById("myInput");
   
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+  
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+    
+    // Alert the copied text
+    alert("Copied the link: " + copyText.value);
+  }
+  </script>
 </body>
 </html>

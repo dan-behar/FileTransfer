@@ -2368,6 +2368,11 @@ fieldset:disabled a.btn {
   background-color: #7AB730;
   border-color: #7AB730;
 }
+.btn-primary2 {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
 
 .btn-primary:hover {
   color: #fff;
@@ -9688,7 +9693,7 @@ h6,
 .bg-registration {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/folder-files11.jpg), no-repeat center center;
   background-size: cover;
-  height: 100%;
+  height: 200%;
 }
 
 .team-item {
