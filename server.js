@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 const File = require("./models/File")
 const fs = require('node:fs');
 
-const https = require('node:https');
+const http = require('http');
 
 const options = {
   key: fs.readFileSync('certificates/key.pem'),
@@ -66,4 +66,4 @@ async function handleDownload(req, res) {
   res.download(file.path, file.originalName)
 }
 
-https.createServer(options, app).listen(443)
+http.createServer(app).listen(8080)
