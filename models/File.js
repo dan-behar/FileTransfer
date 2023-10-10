@@ -5,6 +5,10 @@ const File = new mongoose.Schema({
     type: String,
     required: true,
   },
+  hashname: {
+    type: String,
+    required: true,
+  },
   originalName: {
     type: String,
     required: true,

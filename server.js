@@ -3,6 +3,7 @@ const multer = require("multer")
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const File = require("./models/File")
+const crypto = require("crypto")
 
 const http = require('http');
 
@@ -33,14 +34,19 @@ app.get("/", (req, res) => {
 })
 
 app.post("/upload", upload.single("file"), async (req, res) => {
+  var current_date = (new Date()).valueOf().toString();
+  var random = Math.random().toString();
+  var namehash = crypto.createHash('sha1').update(current_date + random).digest('hex');
+
   const params = {
     Bucket: process.env.AWS_BUCKET,
-    Key: req.file.originalname,
+    Key: namehash,
     Body: req.file.buffer,
   };
 
   const fileData = {
     path: process.env.AWS_BUCKET,
+    hashname: namehash,
     originalName: req.file.originalname,
   }
   if (req.body.password != null && req.body.password !== "") {
@@ -80,13 +86,14 @@ async function handleDownload(req, res) {
   await file.save()
   console.log(file.downloadCount)
 
-  var fileKey = req.query['fileKey'];
+  //var fileKey = req.query['fileKey'];
+  var fileName = file.originalName;
 
   var options = {
     Bucket: file.path,
-    Key: file.originalName,
+    Key: file.hashname,
   };
-  res.attachment(fileKey);
+  res.attachment(fileName);
   var fileStream = s3.getObject(options).createReadStream();
   fileStream.pipe(res);
 }
