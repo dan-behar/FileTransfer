@@ -3,14 +3,18 @@ const multer = require("multer")
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const File = require("./models/File")
-const fs = require('node:fs');
 
 const http = require('http');
 
-const options = {
-  key: fs.readFileSync('certificates/key.pem'),
-  cert: fs.readFileSync('certificates/cert.pem'),
-};
+const AWS = require('aws-sdk');
+
+AWS.config.update({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.ACCESS_SECRET_ID,
+  region: 'us-east-1',
+});
+
+const s3 = new AWS.S3();
 
 const express = require("express")
 const app = express()
@@ -18,7 +22,7 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'));
 
-const upload = multer({ dest: "uploads" })
+const upload = multer({ storage: multer.memoryStorage()})
 
 mongoose.connect("mongodb://localhost:27017/fileSharing")
 
@@ -29,8 +33,14 @@ app.get("/", (req, res) => {
 })
 
 app.post("/upload", upload.single("file"), async (req, res) => {
+  const params = {
+    Bucket: process.env.AWS_BUCKET,
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+  };
+
   const fileData = {
-    path: req.file.path,
+    path: process.env.AWS_BUCKET,
     originalName: req.file.originalname,
   }
   if (req.body.password != null && req.body.password !== "") {
@@ -38,6 +48,13 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   }
 
   const file = await File.create(fileData)
+
+  s3.upload(params, (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error uploading file');
+    }
+  });
 
   res.render("index", { fileLink: `${req.headers.origin}/file/${file.id}` })
 })
@@ -63,7 +80,15 @@ async function handleDownload(req, res) {
   await file.save()
   console.log(file.downloadCount)
 
-  res.download(file.path, file.originalName)
+  var fileKey = req.query['fileKey'];
+
+  var options = {
+    Bucket: file.path,
+    Key: file.originalName,
+  };
+  res.attachment(fileKey);
+  var fileStream = s3.getObject(options).createReadStream();
+  fileStream.pipe(res);
 }
 
 http.createServer(app).listen(8080)
