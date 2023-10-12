@@ -1,5 +1,8 @@
 ./node_modules
+./Pruebass3
 dockerfile
 .dockerignore
 docker-compose.yml
 .git
+.env
+.gitignore

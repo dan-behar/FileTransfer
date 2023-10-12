@@ -25,7 +25,8 @@ app.use(express.static(__dirname + '/public'));
 
 const upload = multer({ storage: multer.memoryStorage()})
 
-mongoose.connect("mongodb://localhost:27017/fileSharing")
+//mongoose.connect("mongodb://localhost:27017/fileSharing")
+mongoose.connect("mongodb://mongo:27017/fileSharing")
 
 app.set("view engine", "ejs")
 
