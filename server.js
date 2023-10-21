@@ -1,23 +1,23 @@
 require("dotenv").config()
 const multer = require("multer")
-const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
-const File = require("./models/File")
 const crypto = require("crypto")
-
 const http = require('http');
-
 const AWS = require('aws-sdk');
 
+// AWS Configuration and calling
 AWS.config.update({
   accessKeyId: process.env.ACCESS_KEY_ID,
   secretAccessKey: process.env.ACCESS_SECRET_ID,
-  region: 'us-east-1',
+  region: process.env.AWS_REGION,
 });
-
+var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+const docClient = new AWS.DynamoDB.DocumentClient();
 const s3 = new AWS.S3();
+//-------------------------------
 
 const express = require("express")
+const { info } = require("console")
 const app = express()
 
 app.use(express.urlencoded({ extended: true }))
@@ -25,37 +25,56 @@ app.use(express.static(__dirname + '/public'));
 
 const upload = multer({ storage: multer.memoryStorage()})
 
-//mongoose.connect("mongodb://localhost:27017/fileSharing")
-mongoose.connect("mongodb://mongo:27017/fileSharing")
-
 app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
   res.render("index")
 })
 
+//Upload view
 app.post("/upload", upload.single("file"), async (req, res) => {
+
+  //Defining hash names for ID and name
   var current_date = (new Date()).valueOf().toString();
   var random = Math.random().toString();
   var namehash = crypto.createHash('sha1').update(current_date + random).digest('hex');
 
+  var current_date2 = (new Date()).valueOf().toString();
+  var random2 = Math.random().toString();
+  var di = crypto.createHash('sha1').update(current_date2 + random2).digest('hex');
+
+  // Params to send the file to S3
   const params = {
     Bucket: process.env.AWS_BUCKET,
     Key: namehash,
     Body: req.file.buffer,
   };
 
-  const fileData = {
-    path: process.env.AWS_BUCKET,
-    hashname: namehash,
-    originalName: req.file.originalname,
-  }
   if (req.body.password != null && req.body.password !== "") {
-    fileData.password = await bcrypt.hash(req.body.password, 10)
+    passwd = await bcrypt.hash(req.body.password, 10)
+  } else {
+    passwd = ""
   }
 
-  const file = await File.create(fileData)
+  // Storing the information in DynamoDB
+  docClient.put({
+    TableName: process.env.AWS_TABLE,
+    Item: {
+      id: di,
+      path: process.env.AWS_BUCKET,
+      hashname: namehash,
+      originalName: req.file.originalname,
+      password: passwd,
+      downloadCount: 0
+    }
+  }, (err, data)=>{
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error uploading file');
+    }
+  });
 
+  // Uploading the file to S3
   s3.upload(params, (err, data) => {
     if (err) {
       console.error(err);
@@ -63,40 +82,71 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     }
   });
 
-  res.render("index", { fileLink: `${req.headers.origin}/file/${file.id}` })
+  res.render("index", { fileLink: `${req.headers.origin}/file/${di}` })
 })
 
 app.route("/file/:id").get(handleDownload).post(handleDownload)
 
+// Download file
 async function handleDownload(req, res) {
-  const file = await File.findById(req.params.id)
 
-  if (file.password != null) {
+  // Getting the information from DynamoDB
+  try {
+    var params = {
+        Key: {
+         "id": {"S": req.params.id},
+        }, 
+        TableName:  process.env.AWS_TABLE
+    };
+    var result = await dynamodb.getItem(params).promise()
+  } catch (error) {
+      console.error(error);
+  }
+
+  // Checking if ID exists
+  if (Object.keys(result).length === 0){
+    res.redirect('/');
+    return
+  }
+
+  // Confirming password
+  if (result.Item.password.S != "") {
     if (req.body.password == null) {
       res.render("password")
       return
     }
 
-    if (!(await bcrypt.compare(req.body.password, file.password))) {
+    if (!(await bcrypt.compare(req.body.password, result.Item.password.S))) {
       res.render("password", { error: true })
       return
     }
   }
 
-  file.downloadCount++
-  await file.save()
-  console.log(file.downloadCount)
+  // Updating the downloads
+  const params2 = {
+    TableName: process.env.AWS_TABLE,
+    Key: {
+        "id": result.Item.id.S
+    },
+    UpdateExpression: "set downloadCount = :num",
+    ExpressionAttributeValues: {
+        ":num": parseInt(result.Item.downloadCount.N) + 1
+    }
+};
 
-  //var fileKey = req.query['fileKey'];
-  var fileName = file.originalName;
+docClient.update(params2, function(err, data) {
+    if (err) console.log(err);
+});
 
+ // Getting the file from S3
+  var fileName = result.Item.originalName.S;
   var options = {
-    Bucket: file.path,
-    Key: file.hashname,
-  };
-  res.attachment(fileName);
-  var fileStream = s3.getObject(options).createReadStream();
-  fileStream.pipe(res);
+     Bucket: result.Item.path.S,
+     Key: result.Item.hashname.S,
+   };
+   res.attachment(fileName);
+   var fileStream = s3.getObject(options).createReadStream();
+   fileStream.pipe(res);
 }
 
 http.createServer(app).listen(8080)
