@@ -17,7 +17,6 @@ const s3 = new AWS.S3();
 //-------------------------------
 
 const express = require("express")
-const { info } = require("console")
 const app = express()
 
 app.use(express.urlencoded({ extended: true }))
