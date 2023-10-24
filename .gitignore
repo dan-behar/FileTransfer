@@ -3,3 +3,4 @@ node_modules
 uploads
 .DS_STORE
 .dockerignore
+ks_manifest/.env
