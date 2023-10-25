@@ -38,7 +38,7 @@ This user will be the admin of both services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM4.png)
 - Click NEXT. Verify that everything is correct, then create the user (don't forget to copy the password)
 - Go back to the users list. Then click on the name of your user.
-- Go to Security Credentials, the search `Access Keys` and create them as follows:
+- Go to Security Credentials, then search `Access Keys` and create them as follows:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM5.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM6.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM7.png)
@@ -69,7 +69,7 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - If there is a problem with the global envs: change the app-deployment.yaml file, save it and run again all the `kubectl` commands (except the connection) 
 - Execute: `kubectl apply -f app-service.yaml`
 - Execute: `kubectl get services`
-- Copy the EXTERNAL_IP in your browser and strat sharing files!
+- Copy the EXTERNAL_IP in your browser and start sharing files!
 
 ## After Usage
 AWS S3 and Kubernetes have a fee for use. To ensure that everything will stop so it will not continue charging us:
