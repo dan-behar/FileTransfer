@@ -27,7 +27,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
   - Give to it a name and set the the Partition Key name as: **id**. Leave it as `String`.
 
 ### IAM User
-This user will be the admin of thi two services.
+This user will be the admin of both services.
 - In the AWS Console search bar go to the IAM User control panel
 - In the left panel, click users and create a new one. You can use this specs:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM1.png)
@@ -49,8 +49,8 @@ This user will be the admin of thi two services.
 - Search in the console search bar **Kubernetes Clusters**. Enable it if necessary
 - Create a new Kubernetes cluster. It will take a while. Image for reference:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub1.png)
-- Copy the connection code. Image for reference:
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub1.png)
+- Copy the connection code when the cluster is created. Image for reference:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 
 ### In your computer
 The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest; download only `ks_manifest`
