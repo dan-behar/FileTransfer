@@ -77,7 +77,7 @@ AWS S3 and Kubernetes have a fee for use. To ensure that everything will stop so
 - Go to the Google Cloud Console
 - Search in the console search bar **Kubernetes Clusters**
 - Erase the cluster. Image for reference:
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub3.png)
 After this you will need to build again the cluster
 
 ### S3
