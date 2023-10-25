@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: filetransfer
+  name: filetransfer
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "filetransfer-service"
+    port: 80
+    targetPort: 8080
+  selector:
+    app: filetransfer
+  

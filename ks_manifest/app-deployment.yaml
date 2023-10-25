@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: filetransfer
+  name: filetransfer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filetransfer
+  template:
+    metadata:
+      labels:
+        app: filetransfer
+    spec:
+      containers:
+      - image: danielbeh/filetransfer-cl
+        name: filetransfer
+        env:
+        - name: ACCESS_SECRET_ID
+          value: 
+        - name: ACCESS_KEY_ID
+          value: 
+        - name: AWS_BUCKET
+          value: 
+        - name: AWS_TABLE
+          value: 
+        - name: AWS_REGION
+          value: 
+        ports:
+        - containerPort: 80
+          name: filetransfer
