@@ -37,7 +37,7 @@ This user will be the admin of both services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM3.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM4.png)
 - Click NEXT. Verify that everything is correct, then create the user (don't forget to copy the password)
-- Go back to the users list. Then clik on the name of your user.
+- Go back to the users list. Then click on the name of your user.
 - Go to Security Credentials, the search `Access Keys` and create them as follows:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM5.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM6.png)
