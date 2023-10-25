@@ -48,7 +48,9 @@ This user will be the admin of thi two services.
 - Go to the Google Cloud Console
 - Search in the console search bar **Kubernetes Clusters**. Enable it if necessary
 - Create a new Kubernetes cluster. It will take a while. Image for reference:
-PHOTO
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub1.png)
+- Copy the connection code. Image for reference:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub1.png)
 
 ### In your computer
 The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest; download only `ks_manifest`
@@ -58,4 +60,4 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - The AWS Bucket name
   - The AWS DynamoDB table name
   - The AWS region
-- Open Gcloud and go to the directory were `ks_manifest` is located. Access `ks_manifest`
+- Open Gcloud and go to `ks_manifest` directory
