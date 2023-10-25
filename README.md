@@ -13,7 +13,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 ## Prerequisites:
 - Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
 - Have [Gcloud](https://cloud.google.com/sdk/docs/install) installed in your computer
-  - WARNING: Kubernetes service is a little expensive. We suggest to use the $300 gift that Google gives
+  - WARNING: Kubernetes service is a little bit expensive. We suggest to use the $300 gift that Google gives
 
 ## Building the service:
 ### S3
