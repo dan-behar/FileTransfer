@@ -12,8 +12,8 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 
 ## Prerequisites:
 - Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
+  - WARNING: Kubernetes service is a little bit expensive. We suggest to use the $300 gift that Google Cloud gives
 - Have [Gcloud](https://cloud.google.com/sdk/docs/install) installed in your computer
-  - WARNING: Kubernetes service is a little bit expensive. We suggest to use the $300 gift that Google gives
 
 ## Building the service:
 ### S3
@@ -33,7 +33,7 @@ This user will be the admin of both services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM1.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM2.png)
 - Save the password and click NEXT
-- Set the following permisions:
+- Set the following permissions:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM3.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM4.png)
 - Click NEXT. Verify that everything is correct, then create the user (don't forget to copy the password)
