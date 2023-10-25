@@ -24,3 +24,21 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 - In the AWS Console search bar go to the DynamoDB control panel
 - Create a new Table.
   - Give to it a name and set the the Partition Key name as: **id**. Leave it as `String`.
+
+### IAM User
+This user will be the admin of thi two services.
+- In the AWS Console search bar go to the IAM User control panel
+- In the left panel, click users and create a new one. You can use this specs:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM1.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM2.png)
+- Save the password and click NEXT
+- Set the following permisions:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM3.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM4.png)
+- Click NEXT. Verify that everything is correct, then create the user (don't forget to copy the password)
+- Go back to the users list. Then clik on the name of your user.
+- Go to Security Credentials, the search `Access Keys` and create them as follows:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM5.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM6.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM7.png)
+- Save both Access and Secret Access Keys
