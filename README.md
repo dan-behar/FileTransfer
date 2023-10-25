@@ -42,3 +42,13 @@ This user will be the admin of thi two services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM6.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM7.png)
 - Save both Access and Secret Access Keys
+
+### In your computer
+The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest; download only `ks_manifest`
+- In app-deployment.yaml add in the value fields:
+  - Your access key
+  - Your access secret id
+  - The AWS Bucket name
+  - The AWS DynamoDB table name
+  - The AWS region
+- Open Gcloud and go to the directory were `ks_manifest` is located. Access `ks_manifest`
