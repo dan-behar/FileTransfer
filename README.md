@@ -7,7 +7,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 
 ## Structure:
 * AWS S3 to store the encoded files
-* AWS DynamoDB to store the relations between the download ID, the real file name and the hashed file
+* AWS DynamoDB to store the relations between the download ID, the real file's name and the hashed file
 * Google Kubernetes to deploy the API to upload and download
 
 ## Prerequisites:
