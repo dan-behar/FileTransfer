@@ -61,3 +61,33 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - The AWS DynamoDB table name
   - The AWS region
 - Open Gcloud and go to `ks_manifest` directory
+- Paste the command you just copied from Kubernetes and execute it
+- Execute: `kubectl apply -f app-deployment.yaml`
+- Execute: `kubectl get pods`
+  - If READY is 0/1, wait until it gets 1/1
+- Execute: `kubectl describe pods <YOUR_POD_NAME>`. This just to verify that the global envs were loaded correctly
+  - If there is a problem with the global envs: change the app-deployment.yaml file, save it and run again all the `kubectl` commands (except the connection) 
+- Execute: `kubectl apply -f app-service.yaml`
+- Execute: `kubectl get services`
+- Copy the EXTERNAL_IP in your browser and strat sharing files!
+
+## After Usage
+AWS S3 and Kubernetes have a fee for use. To ensure that everything will stop so it will not continue charging us:
+### Kubernetes:
+- Go to the Google Cloud Console
+- Search in the console search bar **Kubernetes Clusters**
+- Erase the cluster. Image for reference:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
+After this you will need to build again the cluster
+
+### S3
+- In the AWS Console search bar go to the S3 control panel
+- Click your bucket name
+- Select all your files and in **actions** erase them
+
+## DynamoDB
+This service doesn't have a fee, but because we erased the files it is tracking, it is better to erase all the data
+- In the AWS Console search bar go to the DynamoDB control panel
+- In the left panel click Tables
+- Click your table name and after that click the orange button: Explore table items
+- Select all the items and in **actions** erase them
