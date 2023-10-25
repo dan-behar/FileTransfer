@@ -85,7 +85,7 @@ After this you will need to build again the cluster
 - Click your bucket name
 - Select all your files and in **actions** erase them
 
-## DynamoDB
+### DynamoDB
 This service doesn't have a fee, but because we erased the files it is tracking, it is better to erase all the data
 - In the AWS Console search bar go to the DynamoDB control panel
 - In the left panel click Tables
