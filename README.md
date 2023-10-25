@@ -13,6 +13,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 ## Prerequisites:
 - Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
 - Have [Gcloud](https://cloud.google.com/sdk/docs/install) installed in your computer
+  - WARNING: Kubernetes service is a little expensive. We suggest to use the $300 gift that Google gives
 
 ## Building the service:
 ### S3
@@ -42,6 +43,12 @@ This user will be the admin of thi two services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM6.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM7.png)
 - Save both Access and Secret Access Keys
+
+### Kubernetes
+- Go to the Google Cloud Console
+- Search in the console search bar **Kubernetes Clusters**. Enable it if necessary
+- Create a new Kubernetes cluster. It will take a while. Image for reference:
+PHOTO
 
 ### In your computer
 The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest; download only `ks_manifest`
