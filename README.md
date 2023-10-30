@@ -53,13 +53,15 @@ This user will be the admin of both services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 
 ### In your computer
-The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest; download only `ks_manifest`
-- In app-deployment.yaml add in the value fields:
+The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest.
+- Open the terminal and execute: `https://github.com/dan-behar/FileTransfer`
+- In app-deployment.yaml add in the value fields (image for reference):
   - Your access key
   - Your access secret id
   - The AWS Bucket name
   - The AWS DynamoDB table name
   - The AWS region
+    ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub3.png)
 - Open Gcloud and go to `ks_manifest` directory
 - Paste the command you just copied from Kubernetes and execute it
 - Execute: `kubectl apply -f app-deployment.yaml`
