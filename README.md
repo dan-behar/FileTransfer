@@ -66,7 +66,7 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - The AWS Bucket name
   - The AWS DynamoDB table name
   - The AWS region
-  - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod1.png)
+  - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod1.png)<br>
 Now we are going to install **Kubectl**. Here is the [link](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_kubectl) to install it. **Just do the steps detailed in the following photos:**
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod3.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod4.png)
