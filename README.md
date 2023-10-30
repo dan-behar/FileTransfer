@@ -53,17 +53,26 @@ This user will be the admin of both services.
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 
 ### In your computer
+Some images reference to the process we did in Windows, hence some steps could change in iOS or Linux.
 The app (server.js and it's dependencies) is already dockerized and stored in a Docker Container. That container is referenced in the Kubernetes Manifest.
-- Open the terminal and execute: `https://github.com/dan-behar/FileTransfer`
-- In app-deployment.yaml add in the value fields (image for reference):
+- Open Gcloud
+  - Double-left click in the program Icon (image for reference). If it is the first time, it will ask to authenticate using Google Auth services
+  ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod2.png)
+- Using `cd`, move to the directory in which you want to download the repo
+- Execute: `git clone https://github.com/dan-behar/FileTransfer` and `cd FileTransfer/ks_manifest`
+- Open a text editor and edit the *app-deployment.yaml* file. Edit the value fields (image for reference):
   - Your access key
   - Your access secret id
   - The AWS Bucket name
   - The AWS DynamoDB table name
   - The AWS region
-    ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub3.png)
-- Open Gcloud and go to `ks_manifest` directory
-- Paste the command you just copied from Kubernetes and execute it
+    ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod1.png)
+Now we are going to install **Kubectl**. Here is the [link](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_kubectl) to install it. **Just do the steps detailed in the following photos:**
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod3.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod4.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod5.png)
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod6.png)
+- Paste the connection code from the Kubernetes cluster in Google and execute it
 - Execute: `kubectl apply -f app-deployment.yaml`
 - Execute: `kubectl get pods`
   - If READY is 0/1, wait until it gets 1/1
