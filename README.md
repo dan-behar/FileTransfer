@@ -70,12 +70,11 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - The AWS DynamoDB table name
   - The AWS region
   - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod1.png)<br>
-Now we are going to install **Kubectl**. Here is the [link](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_kubectl) to install it. **Just do the steps detailed in the following photos:**
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod3.png)
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod4.png)
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod5.png)
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod6.png)
-- Go back to the Kubernetes section and copy the connection code from the Kubernetes cluster in Google. Paste it in the terminal
+- We are going to install **kubectl**. Follow this steps in the terminal:
+  - `gcloud components install kubectl` to install it
+  - `kubectl version` to verify the installation
+  - `gcloud components install gke-gcloud-auth-plugin` to install a required plug-in
+  - Go back to the Kubernetes section and copy the connection code from the Kubernetes cluster in Google. Paste it in the terminal
 - Execute: `kubectl apply -f app-deployment.yaml`
 - Execute: `kubectl get pods`
   - If READY is 0/1, wait until it gets 1/1
