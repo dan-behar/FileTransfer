@@ -19,12 +19,14 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 ### S3
 - In the AWS Console search bar go to the S3 control panel
 - Create a new bucket. Be advised that the name must be unique in the whole network, be creative
-- Set a region in which the bucket will be created
+- Set a region in which the bucket will be created. This is the only things that you need to edit
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/s31.png)
 
 ### DynamoDB
 - In the AWS Console search bar go to the DynamoDB control panel
-- Create a new Table.
-  - Give to it a name and set the the Partition Key name as: **id**. Leave it as `String`.
+- Create a new Table. Use this table details:
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Dyn1.png)
+  - Leave the default settings to create the table 
 
 ### IAM User
 This user will be the admin of both services.
