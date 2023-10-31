@@ -38,7 +38,8 @@ This user will be the admin of both services.
 - Set the following permissions:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM3.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM4.png)
-- Click NEXT. Verify that everything is correct, then create the user (don't forget to copy the password)
+- Click NEXT. Verify that everything is correct, then create the user
+  - Don't forget to copy the password that will be available after you create the user
 - Go back to the users list. Then click on the name of your user.
 - Go to Security Credentials, then search `Access Keys` and create them as follows:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/IAM5.png)
@@ -74,7 +75,7 @@ Now we are going to install **Kubectl**. Here is the [link](https://cloud.google
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod4.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod5.png)
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod6.png)
-- Paste the connection code from the Kubernetes cluster in Google and execute it
+- Go back to the Kubernetes section and copy the connection code from the Kubernetes cluster in Google. Paste it in the terminal
 - Execute: `kubectl apply -f app-deployment.yaml`
 - Execute: `kubectl get pods`
   - If READY is 0/1, wait until it gets 1/1
