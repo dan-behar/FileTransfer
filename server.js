@@ -26,6 +26,7 @@ const upload = multer({ storage: multer.memoryStorage()})
 
 app.set("view engine", "ejs")
 
+// First view
 app.get("/", (req, res) => {
   res.render("index")
 })
