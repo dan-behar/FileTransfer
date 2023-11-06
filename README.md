@@ -95,7 +95,7 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
     ```
     gcloud components install gke-gcloud-auth-plugin
     ```
-  - Go back to the Kubernetes section and `copy` the connection code from the Kubernetes cluster in Google. Paste it in the terminal
+  - Go back to Google Cloud Kubernetes page and `copy` the connection code from the Kubernetes cluster in Google. Paste it in the terminal
      ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 - Execute:
   ```
