@@ -9,10 +9,12 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 * AWS S3 to store the encoded files
 * AWS DynamoDB to store the relations between the download ID, the real file's name and the hashed file
 * Google Kubernetes to deploy the API to upload and download
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/structure.png)
 
 ## Prerequisites:
 - Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
   - WARNING: The Google Kubernetes service is a little bit expensive (including in AWS). We suggest to create a new account and use the $300 gift that Google Cloud gives to deploy without charges
+  - All the AWS services must be in the same region. We suggest to use "us-east-1" [US East (N. Virginia)]
 - Have [Gcloud](https://cloud.google.com/sdk/docs/install) installed in your computer. This takes a while, continue with the next AWS steps
 
 ## Building the service:
@@ -52,8 +54,6 @@ This user will be the admin of both services.
 - Search in the console search bar **Kubernetes Clusters**. Enable it if necessary
 - Create a new Kubernetes cluster. It will take a while. Image for reference:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub1.png)
-- Copy the connection code when the cluster is created. Image for reference:
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 
 ### In your computer
 Some images reference to the process we did in Windows, hence some steps could change in iOS or Linux.
@@ -61,8 +61,18 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
 - Open Gcloud
   - Double-left click in the program Icon (image for reference). If it is the first time, it will ask to authenticate using Google Auth services
   - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod2.png)
+  - You can also use this command to login in your account:
+    ```
+    gcloud auth login
+    ```
 - Using `cd`, move to the directory in which you want to download the repo
-- Execute: `git clone https://github.com/dan-behar/FileTransfer` and `cd FileTransfer/ks_manifest`
+- Execute:
+  ```
+  git clone https://github.com/dan-behar/FileTransfer
+  ```
+  ```
+  cd FileTransfer/ks_manifest
+  ```
 - Open a text editor and edit the *app-deployment.yaml* file. Edit the value fields (image for reference):
   - Your access key
   - Your access secret id
@@ -71,17 +81,45 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - The AWS region
   - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod1.png)<br>
 - We are going to install **kubectl**. Follow this steps in the terminal:
-  - `gcloud components install kubectl` to install it
-  - `kubectl version` to verify the installation
-  - `gcloud components install gke-gcloud-auth-plugin` to install a required plug-in
-  - Go back to the Kubernetes section and copy the connection code from the Kubernetes cluster in Google. Paste it in the terminal
-- Execute: `kubectl apply -f app-deployment.yaml`
-- Execute: `kubectl get pods`
+  - to install it:
+    ```
+    gcloud components install kubectl
+    ```
+    
+  - to verify the installation:
+    ```
+    kubectl version
+    ```
+    
+  - to install a required plug-in:
+    ```
+    gcloud components install gke-gcloud-auth-plugin
+    ```
+  - Go back to Google Cloud Kubernetes page and `copy` the connection code from the Kubernetes cluster in Google. Paste it in the terminal
+     ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
+- Execute:
+  ```
+  kubectl apply -f app-deployment.yaml
+  ```
+- Execute:
+  ```
+  kubectl get pods
+  ```
   - If READY is 0/1, wait until it gets 1/1
-- Execute: `kubectl describe pods <YOUR_POD_NAME>`. This just to verify that the global envs were loaded correctly
+- Execute:
+  ```
+  kubectl describe pods <YOUR_POD_NAME>
+  ```
+  This just to verify that the global envs were loaded correctly
   - If there is a problem with the global envs: change the app-deployment.yaml file, save it and run again all the `kubectl` commands (except the connection) 
-- Execute: `kubectl apply -f app-service.yaml`
-- Execute: `kubectl get services`
+- Execute:
+  ```
+  kubectl apply -f app-service.yaml
+  ```
+- Execute:
+  ```
+  kubectl get services
+  ```
 - Copy the EXTERNAL_IP in your browser and start sharing files!
 
 ## After Usage
