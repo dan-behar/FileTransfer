@@ -9,6 +9,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 * AWS S3 to store the encoded files
 * AWS DynamoDB to store the relations between the download ID, the real file's name and the hashed file
 * Google Kubernetes to deploy the API to upload and download
+![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/structure.png)
 
 ## Prerequisites:
 - Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
