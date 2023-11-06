@@ -77,17 +77,44 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   - The AWS region
   - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod1.png)<br>
 - We are going to install **kubectl**. Follow this steps in the terminal:
-  - `gcloud components install kubectl` to install it
-  - `kubectl version` to verify the installation
-  - `gcloud components install gke-gcloud-auth-plugin` to install a required plug-in
+  - to install it:
+    ```
+    gcloud components install kubectl
+    ```
+    
+  - to verify the installation:
+    ```
+    kubectl version
+    ```
+    
+  - to install a required plug-in:
+    ```
+    gcloud components install gke-gcloud-auth-plugin
+    ```
   - Go back to the Kubernetes section and copy the connection code from the Kubernetes cluster in Google. Paste it in the terminal
-- Execute: `kubectl apply -f app-deployment.yaml`
-- Execute: `kubectl get pods`
+- Execute:
+  ```
+  kubectl apply -f app-deployment.yaml
+  ```
+- Execute:
+  ```
+  kubectl get pods
+  ```
   - If READY is 0/1, wait until it gets 1/1
-- Execute: `kubectl describe pods <YOUR_POD_NAME>`. This just to verify that the global envs were loaded correctly
+- Execute:
+  ```
+  kubectl describe pods <YOUR_POD_NAME>
+  ```
+  This just to verify that the global envs were loaded correctly
   - If there is a problem with the global envs: change the app-deployment.yaml file, save it and run again all the `kubectl` commands (except the connection) 
-- Execute: `kubectl apply -f app-service.yaml`
-- Execute: `kubectl get services`
+- Execute:
+  ```
+  kubectl apply -f app-service.yaml
+  ```
+- Execute:
+  ```
+  kubectl get services
+  ```
 - Copy the EXTERNAL_IP in your browser and start sharing files!
 
 ## After Usage
