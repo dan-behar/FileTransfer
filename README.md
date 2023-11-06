@@ -54,8 +54,6 @@ This user will be the admin of both services.
 - Search in the console search bar **Kubernetes Clusters**. Enable it if necessary
 - Create a new Kubernetes cluster. It will take a while. Image for reference:
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub1.png)
-- Copy the connection code when the cluster is created. Image for reference:
-![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 
 ### In your computer
 Some images reference to the process we did in Windows, hence some steps could change in iOS or Linux.
@@ -97,7 +95,8 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
     ```
     gcloud components install gke-gcloud-auth-plugin
     ```
-  - Go back to the Kubernetes section and copy the connection code from the Kubernetes cluster in Google. Paste it in the terminal
+  - Go back to the Kubernetes section and `copy` the connection code from the Kubernetes cluster in Google. Paste it in the terminal
+     ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Kub2.png)
 - Execute:
   ```
   kubectl apply -f app-deployment.yaml
