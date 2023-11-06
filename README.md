@@ -14,6 +14,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 ## Prerequisites:
 - Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
   - WARNING: The Google Kubernetes service is a little bit expensive (including in AWS). We suggest to create a new account and use the $300 gift that Google Cloud gives to deploy without charges
+  - All the AWS services must be in the same region. We suggest to use "us-east-1" [US East (N. Virginia)]
 - Have [Gcloud](https://cloud.google.com/sdk/docs/install) installed in your computer. This takes a while, continue with the next AWS steps
 
 ## Building the service:
@@ -62,6 +63,10 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
 - Open Gcloud
   - Double-left click in the program Icon (image for reference). If it is the first time, it will ask to authenticate using Google Auth services
   - ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/Cod2.png)
+  - You can also use this command to login in your account:
+    ```
+    gcloud auth login
+    ```
 - Using `cd`, move to the directory in which you want to download the repo
 - Execute:
   ```
