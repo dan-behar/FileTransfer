@@ -120,7 +120,7 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   ```
   kubectl get services
   ```
-- After this lines are executed, this is the step-by-step to [configure the HTTPS certs]([https://github.com/CruzdelCid](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs)) in Google Cloud.
+- After this lines are executed, this is the step-by-step to [configure the HTTPS certs]([https://github.com/CruzdelCid](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs))
   - Be advise that you need to have the prerrequisites that the page says. 
 
 ## After Usage
