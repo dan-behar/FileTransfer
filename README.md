@@ -12,7 +12,7 @@ Final project for Cloud and Inhouse Infrastructure course in which we took a Fil
 ![Image text](https://github.com/dan-behar/FileTransfer/blob/main/images/structure.png)
 
 ## Prerequisites:
-- Have an [AWS Console account](https://github.com/CruzdelCid) and a Google Cloud account
+- Have an [AWS Console account](https://aws.amazon.com/console/) and a Google Cloud account
   - WARNING: The Google Kubernetes service is a little bit expensive (including in AWS). We suggest to create a new account and use the $300 gift that Google Cloud gives to deploy without charges
   - All the AWS services must be in the same region. We suggest to use "us-east-1" [US East (N. Virginia)]
 - Have [Gcloud](https://cloud.google.com/sdk/docs/install) installed in your computer. This takes a while, continue with the next AWS steps
@@ -120,7 +120,7 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   ```
   kubectl get services
   ```
-- After this lines are executed, this is the step-by-step to [configure the HTTPS certs]([https://github.com/CruzdelCid](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs))
+- After this lines are executed, this is the step-by-step to [configure the HTTPS certs](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs).
   - Be advise that you need to have the prerrequisites that the page says. 
 
 ## After Usage
