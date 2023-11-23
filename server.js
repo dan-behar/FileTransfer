@@ -29,6 +29,26 @@ app.set("view engine", "ejs")
 // First view
 app.get("/", (req, res) => {
   res.render("index")
+  var moment = (new Date()).valueOf().toString();
+
+  // Logs
+  docClient.put({
+    TableName: process.env.AWS_TABLE_LOGS,
+    Item: {
+      numdate: moment,
+      page: "main",
+      host: req.headers['host'],
+      mobile: req.headers['sec-ch-ua-mobile'],
+      platform: req.headers['sec-ch-ua-platform'],
+      ip: req.socket.remoteAddress,
+      fileid: null
+    }
+  }, (err, data)=>{
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error uploading file');
+    }
+  });
 })
 
 //Upload view
@@ -82,6 +102,27 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     }
   });
 
+  var moment = (new Date()).valueOf().toString();
+
+  // Logs
+  docClient.put({
+    TableName: process.env.AWS_TABLE_LOGS,
+    Item: {
+      numdate: moment,
+      page: "upload",
+      host: req.headers['host'],
+      mobile: req.headers['sec-ch-ua-mobile'],
+      platform: req.headers['sec-ch-ua-platform'],
+      ip: req.socket.remoteAddress,
+      fileid: di
+    }
+  }, (err, data)=>{
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error uploading file');
+    }
+  });
+
   res.render("index", { fileLink: `${req.headers.origin}/file/${di}` })
 })
 
@@ -89,6 +130,27 @@ app.route("/file/:id").get(handleDownload).post(handleDownload)
 
 // Download file
 async function handleDownload(req, res) {
+
+  var moment = (new Date()).valueOf().toString();
+
+  // Logs
+  docClient.put({
+    TableName: process.env.AWS_TABLE_LOGS,
+    Item: {
+      numdate: moment,
+      page: "download",
+      host: req.headers['host'],
+      mobile: req.headers['sec-ch-ua-mobile'],
+      platform: req.headers['sec-ch-ua-platform'],
+      ip: req.socket.remoteAddress,
+      fileid: req.params.id
+    }
+  }, (err, data)=>{
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error uploading file');
+    }
+  });
 
   // Getting the information from DynamoDB
   try {

@@ -19,15 +19,17 @@ spec:
         name: filetransfer
         env:
         - name: ACCESS_SECRET_ID
-          value: <YOUR_ACCESS_ID>
+          value:
         - name: ACCESS_KEY_ID
-          value: <YOUR_ACCESS_KEY>
+          value:
         - name: AWS_BUCKET
-          value: <YOUR_BUCKET>
+          value:
         - name: AWS_TABLE
-          value: <YOUR_TABLE>
+          value:
         - name: AWS_REGION
-          value: <YOUR_REGION>
+          value:
+        - name: AWS_TABLE_LOGS
+          value:
         ports:
         - containerPort: 80
           name: filetransfer

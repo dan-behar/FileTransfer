@@ -1,6 +1,7 @@
 ./node_modules
 ./PruebasDyn
 ./Pruebass3
+./ks_manifest
 dockerfile
 .dockerignore
 docker-compose.yml
