@@ -120,7 +120,8 @@ The app (server.js and it's dependencies) is already dockerized and stored in a 
   ```
   kubectl get services
   ```
-- Copy the EXTERNAL_IP in your browser and start sharing files!
+- After this lines are executed, this is the step-by-step to [configure the HTTPS certs]([https://github.com/CruzdelCid](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs)) in Google Cloud.
+  - Be advise that you need to have the prerrequisites that the page says. 
 
 ## After Usage
 AWS S3 and Kubernetes have a fee for use. To ensure that everything will stop so it will not continue charging us:
